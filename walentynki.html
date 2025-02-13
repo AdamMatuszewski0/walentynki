@@ -148,9 +148,9 @@
                 return;
             }
             const locations = [
-                { lat: 52.622889, lng: 21.319711, title: "Tu rozpoczął się nasz związek" },
-                { lat: 52.660006733277626, lng: 21.280857766122832, title: "Tu się poznaliśmy" },
-                { lat: 52.588985999937435, lng: 21.453419830153518, title: "W tym miejscu spędziliśmy dużo czasu rozmawiając" },
+                { lat: 52.622889, lng: 21.319711, title: "Tu rozpoczął się nasz związek 18.11.2024" },
+                { lat: 52.660006733277626, lng: 21.280857766122832, title: "W tym miejscu się poznaliśmy 18.05.2024" },
+                { lat: 52.588985999937435, lng: 21.453419830153518, title: "W tym miejscu spędziliśmy dużo czasu na rozmowach" },
                 { lat: 51.764434158475495, lng: 19.461795659882547, title: "Tu byliśmy na wyjeździe" }
             ];
             const map = new google.maps.Map(document.getElementById("map"), {
@@ -164,7 +164,7 @@
                     title: location.title
                 });
                 const infoWindow = new google.maps.InfoWindow({
-                    content: `<h3>${location.title}</h3>`
+                    content: `<h3 style="color: black;">${location.title}</h3>`
                 });
                 marker.addListener("click", () => {
                     infoWindow.open(map, marker);
