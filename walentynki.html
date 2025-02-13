@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walentynki dla Ciebie</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            color: white;
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            padding: 50px;
+            overflow: hidden;
+            -webkit-font-smoothing: antialiased; /* Poprawia wygląd czcionek na iOS */
+            -webkit-overflow-scrolling: touch; /* Lepsze przewijanie na urządzeniach mobilnych */
+        }
+        h1 {
+            font-size: 48px;
+        }
+        #timer {
+            font-size: 36px;
+            margin-top: 20px;
+        }
+        h2 {
+            margin-top: 20px;
+            font-size: 32px;
+        }
+        .hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            transform: rotate(-45deg);
+            animation: float 5s linear infinite;
+        }
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            border-radius: 50%;
+        }
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+        .heart::after {
+            left: 10px;
+            top: 0;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) scale(1) rotate(-45deg); opacity: 1; }
+            100% { transform: translateY(-10vh) scale(0.5) rotate(-45deg); opacity: 0; }
+        }
+        #map {
+            width: 100%;
+            height: 400px;
+            margin-top: 30px;
+            border-radius: 10px;
+        }
+        #loveMessage {
+            font-family: 'Dancing Script', cursive;
+            font-size: 48px;
+            margin-top: 30px;
+            color: white;
+        }
+        #signature {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 24px;
+            color: white;
+            font-weight: bold;
+        }
+        /* Responsywność dla mniejszych ekranów */
+        @media (max-width: 768px) {
+            #loveMessage {
+                font-size: 36px; /* Mniejsze czcionki na mniejszych ekranach */
+            }
+            #timer {
+                font-size: 28px; /* Mniejszy timer */
+            }
+            #signature {
+                font-size: 18px; /* Mniejszy podpis */
+            }
+        }
+    </style>
+    <script>
+        function loadGoogleMapsApi() {
+            const script = document.createElement('script');
+            script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAdka2H-_gSVithmXMz0Rt6Rw0Lo-qxVJY&callback=initMap";
+            script.async = true;
+            script.defer = true;
+            script.onerror = function() {
+                console.error("Google Maps API failed to load. Check API key and network settings.");
+            };
+            document.head.appendChild(script);
+        }
+    </script>
+</head>
+<body onload="loadGoogleMapsApi()">
+    <h1>Kochanie, minęło już:</h1>
+    <div id="timer"></div>
+    <h2>Szczęśliwych Walentynek</h2>
+    <div class="hearts"></div>
+    <div id="map"></div>
+    
+    <!-- Powiększony tekst poniżej mapy -->
+    <div id="loveMessage">Kocham cię ❤️</div>
+    
+    <!-- Podpis w prawym dolnym rogu -->
+    <div id="signature">Twój Adaś 💕</div>
+    
+    <script>
+        function updateTimer() {
+            const startDate = new Date('2024-11-18T00:00:00');
+            const now = new Date();
+            const diff = now - startDate;
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            document.getElementById('timer').textContent = days + " dni miłości";
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+            document.querySelector('.hearts').appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+
+        function initMap() {
+            if (typeof google === 'undefined' || !google.maps) {
+                console.error("Google Maps API failed to load.");
+                return;
+            }
+            const locations = [
+                { lat: 52.622889, lng: 21.319711, title: "Tu rozpoczął się nasz związek" },
+                { lat: 52.660006733277626, lng: 21.280857766122832, title: "Tu się poznaliśmy" },
+                { lat: 52.588985999937435, lng: 21.453419830153518, title: "W tym miejscu spędziliśmy dużo czasu rozmawiając" },
+                { lat: 51.764434158475495, lng: 19.461795659882547, title: "Tu byliśmy na wyjeździe" }
+            ];
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 12,
+                center: locations[0]
+            });
+            locations.forEach(location => {
+                const marker = new google.maps.Marker({
+                    position: { lat: location.lat, lng: location.lng },
+                    map: map,
+                    title: location.title
+                });
+                const infoWindow = new google.maps.InfoWindow({
+                    content: `<h3>${location.title}</h3>`
+                });
+                marker.addListener("click", () => {
+                    infoWindow.open(map, marker);
+                });
+            });
+        }
+
+        setInterval(createHeart, 300);
+        updateTimer();
+        setInterval(updateTimer, 1000 * 60 * 60 * 24);
+    </script>
+</body>
+</html>
