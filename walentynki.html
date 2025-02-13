@@ -169,6 +169,9 @@
                 marker.addListener("click", () => {
                     infoWindow.open(map, marker);
                 });
+            const infoWindow = new google.maps.InfoWindow({
+            content: `<h3 style="color: black;">${location.title}</h3>`
+            });
             });
         }
 
