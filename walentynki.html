@@ -119,6 +119,109 @@
     
     <!-- Powiększony tekst poniżej mapy -->
     <div id="loveMessage">Kocham cię ❤️</div>
+        <h3>💖 Dlaczego Cię Kocham? 💖</h3>
+<div id="quoteContainer" style="font-size: 24px; font-style: italic; margin-top: 10px; opacity: 1; transition: opacity 1s;"></div>
+
+<script>
+    const quotes = [
+        "Bo zawsze sprawiasz, że się uśmiecham 😊",
+        "Bo przy Tobie czuję się szczęśliwy/a ❤️",
+        "Bo Twoje oczy świecą jak gwiazdy ✨",
+        "Bo jesteś moją największą przygodą 🌍",
+        "Bo kochasz mnie takiego/taką, jakim/jaką jestem 💖",
+        "Bo Twoje przytulenia są najcieplejsze 🤗",
+        "Bo razem możemy wszystko! 💪",
+        "Bo Twoja miłość daje mi siłę 🔥",
+        "Bo Twój śmiech to najpiękniejsza melodia 🎶",
+        "Bo uwielbiam spędzać z Tobą czas ⏳",
+        "Bo mogę Ci powiedzieć wszystko i zawsze mnie zrozumiesz 🗣️",
+        "Bo jesteś moim domem, gdziekolwiek jesteśmy 🏡",
+        "Bo razem jesteśmy nie do zatrzymania 🚀",
+        "Bo zawsze mnie wspierasz, bez względu na wszystko 🤝",
+        "Bo z Tobą każdy dzień jest wyjątkowy 🌈",
+        "Bo Twoje pocałunki sprawiają, że zapominam o wszystkim 😘",
+        "Bo jesteś najpiękniejszą osobą, jaką znam 🌹",
+        "Bo jesteś moją inspiracją ✨",
+        "Bo uwielbiam budzić się obok Ciebie 🌅",
+        "Bo zawsze wiesz, jak poprawić mi humor 😍",
+        "Bo razem tworzymy piękne wspomnienia 📸",
+        "Bo jesteś moim najlepszym przyjacielem/przyjaciółką 💞",
+        "Bo zawsze mnie motywujesz do bycia lepszym/lepszą 🚀",
+        "Bo zawsze mogę na Ciebie liczyć 🤍",
+        "Bo Twoja miłość sprawia, że życie jest piękniejsze 🌷",
+        "Bo Twoja obecność daje mi poczucie bezpieczeństwa 🔒",
+        "Bo uwielbiam Twój zapach 🌸",
+        "Bo Twoje marzenia są także moimi marzeniami ✨",
+        "Bo jesteś wyjątkowy/a i niezastąpiony/a 💎",
+        "Bo razem jesteśmy idealnym zespołem 👫",
+        "Bo z Tobą mogę być sobą 💯",
+        "Bo każdy dzień z Tobą jest niespodzianką 🎁",
+        "Bo uwielbiam Twoje żarty 😂",
+        "Bo kochasz mnie nawet wtedy, gdy mam zły humor 🌧️",
+        "Bo Twoje ciepło rozgrzewa moje serce ❤️‍🔥",
+        "Bo jesteś dla mnie wszystkim 🌎",
+        "Bo Twoje oczy mówią więcej niż słowa 👀",
+        "Bo przy Tobie zawsze czuję się wyjątkowo 🌟",
+        "Bo uwielbiam nasz wspólny czas 🎉",
+        "Bo Twoja miłość sprawia, że czuję się kompletny/a 💖",
+        "Bo zawsze wierzysz we mnie, nawet gdy ja w siebie nie wierzę 🌠",
+        "Bo Twoja troska sprawia, że czuję się ważny/a 🌿",
+        "Bo razem możemy podbić świat! 🌍",
+        "Bo uwielbiam Twój głos 🎶",
+        "Bo każdy dzień z Tobą to nowa przygoda 🏞️",
+        "Bo Twoje spojrzenie rozgrzewa moje serce 🔥",
+        "Bo nigdy się przy Tobie nie nudzę 🎭",
+        "Bo nasze rozmowy są najlepsze 💬",
+        "Bo jesteś moim spełnionym marzeniem ✨",
+        "Bo kocham Cię bardziej niż czekoladę 🍫",
+        "Bo nasza miłość to najpiękniejsza historia 📖",
+        "Bo jesteś moim szczęściem 🍀",
+        "Bo nasze wspólne chwile są bezcenne 💰",
+        "Bo masz najpiękniejszy uśmiech na świecie 😊",
+        "Bo każde nasze „kocham Cię” jest wyjątkowe 💌",
+        "Bo razem możemy przenosić góry 🏔️",
+        "Bo jesteś moim światłem w ciemności 🌙",
+        "Bo mogę zawsze liczyć na Twoje wsparcie 🤗",
+        "Bo jesteś moją bratnią duszą 💑",
+        "Bo Twoja obecność sprawia, że czuję się kochany/a 💕",
+        "Bo jesteś jedyny/a w swoim rodzaju 🌟",
+        "Bo przy Tobie czuję się spełniony/a 🌈",
+        "Bo każda chwila bez Ciebie to chwila stracona ⏳",
+        "Bo Twoja miłość sprawia, że czuję się niezwyciężony/a 🦸",
+        "Bo uwielbiam się do Ciebie przytulać 🥰",
+        "Bo kocham wszystko, co robisz 💖",
+        "Bo jesteś moim największym szczęściem 🎊",
+        "Bo przy Tobie każdy dzień jest lepszy 🌞",
+        "Bo kocham Cię całym sercem ❤️",
+        "Bo jesteś moim przeznaczeniem 🔮",
+        "Bo zawsze mogę na Tobie polegać 🏅",
+        "Bo razem mamy tysiące wspomnień 🎞️",
+        "Bo Twoja miłość daje mi spokój 🕊️",
+        "Bo jesteś dla mnie idealny/a 💘",
+        "Bo kocham Cię bardziej niż słowa mogą wyrazić 📝",
+        "Bo nigdy się Tobą nie zmęczę 💖",
+        "Bo Twoja obecność rozjaśnia mój świat 🌟",
+        "Bo razem jesteśmy niepowtarzalni 🎆",
+        "Bo każda chwila z Tobą jest magiczna ✨",
+        "Bo jesteś moją największą radością 🎈",
+        "Bo nigdy nie przestanę Cię kochać! 💘"
+    ];
+    
+    let index = 0;
+    function updateQuote() {
+        const quoteContainer = document.getElementById("quoteContainer");
+        quoteContainer.style.opacity = 0; // Znikanie
+
+        setTimeout(() => {
+            quoteContainer.textContent = quotes[index];
+            quoteContainer.style.opacity = 1; // Pojawianie
+            index = (index + 1) % quotes.length;
+        }, 1000);
+    }
+
+    updateQuote();
+    setInterval(updateQuote, 5000);
+</script>
     
     <!-- Podpis w prawym dolnym rogu -->
     <div id="signature">Twój Adaś 💕</div>
