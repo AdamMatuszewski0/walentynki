@@ -227,12 +227,12 @@
     
     <script>
         function updateTimer() {
-            const startDate = new Date('2024-11-18T00:00:00');
+            const startDate = new Date('2024-11-18T16:00:00');
             const now = new Date();
             const diff = now - startDate;
             
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            document.getElementById('timer').textContent = days + " dni miłości";
+            document.getElementById('timer').textContent = days + " dni związku";
         }
 
         function createHeart() {
@@ -253,7 +253,8 @@
                 { lat: 52.622889, lng: 21.319711, title: "Tu rozpoczął się nasz związek 18.11.2024" },
                 { lat: 52.660006733277626, lng: 21.280857766122832, title: "W tym miejscu się poznaliśmy 18.05.2024" },
                 { lat: 52.588985999937435, lng: 21.453419830153518, title: "W tym miejscu spędziliśmy dużo czasu na rozmowach" },
-                { lat: 51.764434158475495, lng: 19.461795659882547, title: "Tu byliśmy na wyjeździe" }
+                { lat: 51.764434158475495, lng: 19.461795659882547, title: "Tu byliśmy na wyjeździe" },
+                 { lat: 52.592600, lng: 21.455400, title: "jedzonko walentynki 2025" }
             ];
             const map = new google.maps.Map(document.getElementById("map"), {
                 zoom: 12,
